@@ -69,6 +69,38 @@ fun CreateBizCard() {
     }
 }
 
+@Preview
+@Composable
+fun Content(){
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .fillMaxHeight()
+        .padding(8.dp)){
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .padding(4.dp),
+            shape = RoundedCornerShape(corner = CornerSize(6.dp)),
+            border= BorderStroke(width = 2.dp, color = Color.LightGray)
+        ) {
+
+            val dummyList = mutableListOf<String>()
+            for (i in 1..20 ){
+                dummyList.add("Project $i")
+            }
+
+            Portfolio(data = dummyList)
+
+        }
+    }
+}
+
+@Composable
+fun Portfolio(data: MutableList<String>) {
+    Text("Project ges here")
+}
+
 @Composable
 private fun CreateInfo() {
     Column(Modifier.padding(16.dp)) {
@@ -109,7 +141,7 @@ private fun CreateImageProfile(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     JetBizCardTheme {
