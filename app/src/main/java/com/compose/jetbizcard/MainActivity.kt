@@ -28,7 +28,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CreateBizCard() {
+    Surface(modifier = Modifier
+        .fillMaxHeight()
+        .fillMaxWidth()) {
 
+    }
 }
 
 @Preview(showBackground = true)
