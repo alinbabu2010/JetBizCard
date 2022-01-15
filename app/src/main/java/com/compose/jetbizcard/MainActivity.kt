@@ -1,17 +1,20 @@
 package com.compose.jetbizcard
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,6 +39,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CreateBizCard() {
+    val buttonClickedState = remember {
+        mutableStateOf(false)
+    }
     Surface(
         modifier = Modifier
             .fillMaxHeight()
@@ -57,13 +63,17 @@ fun CreateBizCard() {
                 Divider(modifier = Modifier.padding(top = 8.dp, bottom = 8.dp), thickness = 1.5.dp)
                 CreateInfo()
                 Button(onClick = {
-                    Log.d("Sys", "CreateBizCard: Clicked")
+                   buttonClickedState.value = !buttonClickedState.value
+                    
                 }) {
                     Text(
                         text = "Portfolio",
                         style = MaterialTheme.typography.button
                     )
                 }
+                if (buttonClickedState.value) {
+                    Content()
+                } else Box() {}
             }
         }
     }
@@ -75,7 +85,7 @@ fun Content(){
     Box(modifier = Modifier
         .fillMaxWidth()
         .fillMaxHeight()
-        .padding(8.dp)){
+        .padding(2.dp)){
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
@@ -86,7 +96,7 @@ fun Content(){
         ) {
 
             val dummyList = mutableListOf<String>()
-            for (i in 1..20 ){
+            for (i in 1..10 ){
                 dummyList.add("Project $i")
             }
 
@@ -98,7 +108,11 @@ fun Content(){
 
 @Composable
 fun Portfolio(data: MutableList<String>) {
-    Text("Project ges here")
+    LazyColumn{
+        items(data){ item ->
+            Text(item)
+        }
+    }
 }
 
 @Composable
