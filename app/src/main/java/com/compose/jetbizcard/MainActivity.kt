@@ -54,20 +54,21 @@ fun CreateBizCard() {
             modifier = Modifier
                 .width(200.dp)
                 .height(390.dp)
-                .padding(16.dp),
+                .padding(8.dp),
             shape = RoundedCornerShape(corner = CornerSize(16.dp)),
             elevation = 4.dp
         ) {
 
-            Column(modifier = Modifier.height(300.dp),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = Modifier.height(300.dp),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 CreateImageProfile()
                 Divider(modifier = Modifier.padding(top = 8.dp, bottom = 8.dp), thickness = 1.5.dp)
                 CreateInfo()
                 Button(onClick = {
-                   buttonClickedState.value = !buttonClickedState.value
-                    
+                    buttonClickedState.value = !buttonClickedState.value
                 }) {
                     Text(
                         text = "Portfolio",
@@ -83,22 +84,24 @@ fun CreateBizCard() {
 }
 
 @Composable
-fun Content(){
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .fillMaxHeight()
-        .padding(2.dp)){
+fun Content() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .padding(2.dp)
+    ) {
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .padding(4.dp),
             shape = RoundedCornerShape(corner = CornerSize(6.dp)),
-            border= BorderStroke(width = 2.dp, color = Color.LightGray)
+            border = BorderStroke(width = 2.dp, color = Color.LightGray)
         ) {
 
             val dummyList = mutableListOf<String>()
-            for (i in 1..10 ){
+            for (i in 1..10) {
                 dummyList.add("Project $i")
             }
 
@@ -110,22 +113,27 @@ fun Content(){
 
 @Composable
 fun Portfolio(data: MutableList<String>) {
-    LazyColumn{
-        items(data){ item ->
-           Card(modifier = Modifier
-               .padding(13.dp)
-               .fillMaxWidth(),
-           shape = RectangleShape,
-           elevation = 4.dp) {
-                Row(modifier = Modifier
-                    .padding(8.dp)
-                    .background(MaterialTheme.colors.surface)
-                    .padding(8.dp)) {
-                    
-                    CreateImageProfile(modifier = Modifier.size(75.dp))
-                    Column(modifier = Modifier
+    LazyColumn {
+        items(data) { item ->
+            Card(
+                modifier = Modifier
+                    .padding(13.dp)
+                    .fillMaxWidth(),
+                shape = RectangleShape,
+                elevation = 4.dp
+            ) {
+                Row(
+                    modifier = Modifier
                         .padding(8.dp)
-                        .align(Alignment.CenterVertically)
+                        .background(MaterialTheme.colors.surface)
+                        .padding(8.dp)
+                ) {
+
+                    CreateImageProfile(modifier = Modifier.size(75.dp))
+                    Column(
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .align(Alignment.CenterVertically)
                     ) {
                         Text(text = item, fontWeight = FontWeight.Bold)
                         Text(
@@ -137,7 +145,7 @@ fun Portfolio(data: MutableList<String>) {
 
 
                 }
-           }
+            }
         }
     }
 }
